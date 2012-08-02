@@ -338,12 +338,12 @@ input.search_box {
   font-weight:bold;
   color: #393939; 
   border-right:1px solid #393939;
-  width:240px;
+  width:205px;
 }
 
 .torrent-list_complete {
   position: absolute;
-  top: 0px;right: 130px;
+  top: 0px;right: 160px;
   font-size: 12px;
   line-height:18px;
   color: #393939; 
@@ -370,7 +370,7 @@ input.search_box {
 
 .torrent-list_quality {
   position: absolute;
-  top: 0px;right: 80px;
+  top: 0px;right: 110px;
   font-size: 12px;
   padding-left:4px;
   border-left:1px solid #393939;
@@ -548,7 +548,7 @@ input.search_box {
 
   .torrentView {
     position: relative;
-    height: 50px;
+    height: 40px;
     font-size: 12px !important;
     font-weight: normal !important;
     margin:0 6px;
@@ -557,22 +557,18 @@ input.search_box {
   .quality {
     position: absolute;
     display: block;
-  	height: 10px;
-  	width: 10px;
-    right: 99px;
-    top: 10px;
-    border-radius: 5px;
-    border: 1px solid #999;
+  	height: 18px;
+  	width: 93px;
+    right: 50px;
+    top: 7px;
+    background: url('../img/icon_stars.png') no-repeat
   } 
-  .torrent_quality_text {
-    position:absolute;top:10px;left:322px;color:#dcdcdc;
-  }
-	.Leet {   background: #badaff; }
-	.Sweet {  background: #bada55; }
-	.KK {     background: yellow }
-	.Meh {    background: orange }
-	.Lame {   background: #ff4444; }
-	.Sux {    background: purple }
+	.Leet {   background-position:0px -100px }
+	.Sweet {  background-position:0px -75px }
+	.KK {     background-position:0px -50px }
+	.Meh {    background-position:0px -25px }
+	.Lame {   background-position:0px 0px }
+	.Sux {    background-position:0px 0px }
 
   #torrents{
     margin: 0;
@@ -583,7 +579,7 @@ input.search_box {
   .torrent_name {
     position:absolute;
     top:10px;left:0px;
-    width: 230px;
+    width: 200px;
     font-weight: normal;
     overflow:hidden;
     white-space:nowrap;
@@ -629,7 +625,7 @@ input.search_box {
       color:#dcdcdc;
   }
   .pct_complete{
-    right: 125px;
+    right: 155px;
   }
   .size{
     left: 230px;
