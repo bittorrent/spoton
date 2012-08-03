@@ -9,14 +9,7 @@ function onRequest(request, sender, sendResponse)
     sendResponse({})
 }
 
-// Called when the url of a tab changes.
-function checkSite(tabId, changeInfo, tab)
-{
-    console.log()
-    storage.get('torSite', function(objs){
-
-    })
-}
+document.writeln((new Date).toString())
 
 // Listen for any changes to the URL of any tab.
 chrome.extension.onRequest.addListener(onRequest);

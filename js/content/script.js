@@ -1,1 +1,6 @@
-Parset.init(document.documentElement.innerHTML)
+var res = Bt.Parser.init(document.documentElement.innerHTML)
+
+if(res)
+{
+    Bt.Parser.doSearch('music')
+}

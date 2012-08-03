@@ -1,4 +1,6 @@
-var Parser = (function($, _)
+var Bt = {}
+
+Bt.Parser = (function($, _)
 {
 
     var my = {}
@@ -16,8 +18,8 @@ var Parser = (function($, _)
             return false
 
         var hidden_els = {}
-        var url
-        var param
+        var url = false
+        var param = false
 
         my.el.find('form').each(function()
         {
@@ -27,7 +29,7 @@ var Parser = (function($, _)
             if(action === undefined)
                 return
 
-            var inputs = form.find('input[type=type], input[type=search]')
+            var inputs = form.find('input[type=text], input[type=search]')
 
             if(inputs.length !== 1)
                 return
@@ -50,17 +52,17 @@ var Parser = (function($, _)
             param = param_name
 
             var link = document.createElement('a')
-            a.href = action
+            link.href = action
 
-            url = a.href
+            url = link.href
 
             return false //breaks loop
         })
 
-        return url && param ? [url, param, hidden_els] : false
+        return url !== false && param !== false ? { url: url, param: param, hidden_els: hidden_els } : false
     }
 
-    function findMagnets()
+    function findMagnetLinks()
     {
         var magnet_links = my.el.find('a[href^="magnet:?"]')
 
@@ -82,6 +84,12 @@ var Parser = (function($, _)
         my.setHtml(response)
     }
 
+    function getResults(html)
+    {
+        var links = findMagnetLinks(html)
+        console.log(links)
+    }
+
     my.setHtml = function(html)
     {
         my.html = html
@@ -92,9 +100,30 @@ var Parser = (function($, _)
     {
         my.setHtml(html)
 
-        search = getSearchUrl()
+        my.search = getSearchUrl()
 
-        console.log(search)
+        return my.search
+    }
+
+    my.doSearch = function(query, search)
+    {
+        search = search || my.search
+
+        var content
+        var params = search.hidden_els
+        var query_param = {}
+
+        query_param[search.param] = query
+
+        $.get(
+            search.url,
+            _.extend(query_param, search.hidden_els),
+            function(data)
+            {
+                getResults(data)
+            },
+            'html'
+        )
     }
 
     return my
