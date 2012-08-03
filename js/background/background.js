@@ -2,14 +2,18 @@
 
 var storage = chrome.storage.local;
 
-function onRequest(request, sender, sendResponse)
+function processMessage(message, sender, sendResponse)
 {
+    if(message)
+    {
+        chrome.browserAction.setBadgeText({ text: '*', tabId: sender.tab.id })
+    }
+
+    console.log(arguments)
     chrome.pageAction.show(sender.tab.id)
 
     sendResponse({})
 }
 
-document.writeln((new Date).toString())
-
 // Listen for any changes to the URL of any tab.
-chrome.extension.onRequest.addListener(onRequest);
+chrome.extension.onMessage.addListener(processMessage)

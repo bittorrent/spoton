@@ -7,13 +7,13 @@
     },
     "browser_action": {
         "default_icon": "bt_icon.png",
-        "default_popup": "index.html",
+        "default_popup": "popup.html",
         "default_title" : "BitTorrent Zero"
     },
     "content_scripts": [
         {
             "matches": ["*://*/*"],
-            "js": ["js/lib/jquery.js", "js/lib/underscore.js", "js/app/parser.js", "js/content/script.js"],
+            "js": ["js/lib/jquery.js", "js/lib/underscore.js", "js/app/parser.js", "js/content/content.js"],
             "run_at": "document_end"
         }
     ],
