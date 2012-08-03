@@ -83,6 +83,7 @@ if not is_potential(url):
     print "This site is not a torrent site\n"
 else:
     site = get_search_url(url)
+    print(site)
     if site is None:
         print "This site is not a torrent site\n"
     else:

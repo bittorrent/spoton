@@ -1,0 +1,1 @@
+Parset.init(document.documentElement.innerHTML)
