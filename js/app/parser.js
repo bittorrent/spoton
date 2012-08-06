@@ -148,8 +148,6 @@ Bt.Parser = (function($, _)
             }
         })
 
-        // var links = findMagnetLinks(content)
-        console.log(results)
         return results
     }
 
@@ -170,7 +168,7 @@ Bt.Parser = (function($, _)
         return my.search
     }
 
-    my.doSearch = function(query, search)
+    my.doSearch = function(search, query)
     {
         search = search || my.search
 
@@ -185,7 +183,7 @@ Bt.Parser = (function($, _)
             _.extend(query_param, search.hidden_els),
             function(data)
             {
-                getResults(data)
+                getResults(data, query)
             },
             'html'
         )
