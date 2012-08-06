@@ -56,15 +56,15 @@ Bt.Parser = (function($, _)
 
             url = link.href
 
-            return false //breaks loop
+            return false // Exits 'each' loop
         })
 
         return url !== false && param !== false ? { url: url, param: param, hidden_els: hidden_els } : false
     }
 
-    function findMagnetLinks()
+    function findMagnetLinks(content)
     {
-        var magnet_links = my.el.find('a[href^="magnet:?"]')
+        var magnet_links = content.find('a[href^="magnet:?"]')
 
         return magnet_links
     }
@@ -84,11 +84,76 @@ Bt.Parser = (function($, _)
         my.setHtml(response)
     }
 
-    function getResults(html)
-    {
-        var links = findMagnetLinks(html)
-        console.log(links)
+    var regexes = {
+        magnet: /^magnet:?/i,
+        torrent: /.torrent$/i,
+        probable: /\b(get|download)\b/i
     }
+
+    var fuzzy_regex_cache = {}
+    function fuzzyMatch(text, query)
+    {
+        if(!fuzzy_regex_cache[query])
+            fuzzy_regex_cache[query] = new RegExp(query.split(' ').join('.*'), 'i')
+        
+        regex = fuzzy_regex_cache[query]
+
+        return regex.test(text)
+    }
+
+    function getResults(html, query, max)
+    {
+        max = max || 10
+        var tables = $(html).find('table')
+        var rows = tables.find('tr')
+        
+        if(rows.length <= 0)
+            return false
+
+        var results = []
+        rows.each(function(i)
+        {
+            var row =  $(this)
+
+            var download_links = {}
+            var text_links = []
+
+            row.find('td a').each(function()
+            {
+                var anchor = $(this)
+                var href = anchor.attr('href')
+
+                if(fuzzyMatch(anchor.text(), query))
+                {
+                    text_links.push({ text: anchor.text(), url: href })
+                }
+
+                $.each(regexes, function(key, val)
+                {
+                    if(!download_links[key] && val.test(href))
+                    {
+                        download_links[key] = href
+                        return false // Exits 'each' loop
+                    }
+                })
+            })
+
+            if(text_links.length)
+            {
+                results.push(
+                {
+                    pages: text_links,
+                    download: download_links
+                })
+            }
+        })
+
+        // var links = findMagnetLinks(content)
+        console.log(results)
+        return results
+    }
+
+    my.getResults = getResults
 
     my.setHtml = function(html)
     {
