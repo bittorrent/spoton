@@ -1,6 +1,6 @@
 var storage = chrome.storage.local;
 
-Bt = Bt || {}
+window.Bt = window.Bt || {}
 
 Popup = new Backbone.View.extend(
 {

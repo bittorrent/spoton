@@ -4,6 +4,7 @@ var storage = chrome.storage.local;
 
 function processMessage(message, sender, sendResponse)
 {
+    console.log(window.Bt)
     if(message)
     {
         chrome.browserAction.setBadgeText({ text: '*', tabId: sender.tab.id })

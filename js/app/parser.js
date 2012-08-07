@@ -26,18 +26,14 @@ Bt.Parser = (function($, _)
             var form = $(this)
             var action = form.attr('action')
 
-            if(action === undefined)
-                return
-
             var inputs = form.find('input[type=text], input[type=search]')
-
-            if(inputs.length !== 1)
-                return
 
             var param_name = inputs.attr('name')
 
-            if(param_name === undefined)
+            if(action === undefined || param_name === undefined || inputs.length !== 1 || form.find('input[type=password]').length > 0)
+            {
                 return
+            }
 
             var hidden = form.find('input[type=hidden]')
             hidden.each(function()
@@ -51,15 +47,20 @@ Bt.Parser = (function($, _)
 
             param = param_name
 
-            var link = document.createElement('a')
-            link.href = action
-
-            url = link.href
+            url = parseHref(action)
 
             return false // Exits 'each' loop
         })
 
         return url !== false && param !== false ? { url: url, param: param, hidden_els: hidden_els } : false
+    }
+
+    function parseHref(href)
+    {
+        var link = document.createElement('a')
+        link.href = href
+
+        return link.href
     }
 
     function findMagnetLinks(content)
@@ -92,9 +93,6 @@ Bt.Parser = (function($, _)
         var tables = $(html).find('table')
         var rows = tables.find('tr')
         
-        if(rows.length <= 0)
-            return false
-
         var results = []
         rows.each(function(i)
         {
@@ -110,14 +108,14 @@ Bt.Parser = (function($, _)
 
                 if(fuzzyMatch(anchor.text(), query))
                 {
-                    page_link = { text: anchor.text(), url: href }
+                    page_link = { name: anchor.text(), url: parseHref(href) }
                 }
 
                 $.each(regexes, function(key, val)
                 {
                     if(!download_links[key] && val.test(href))
                     {
-                        download_links[key] = href
+                        download_links[key] = parseHref(href)
                         return false // Exits 'each' loop
                     }
                 })
@@ -127,7 +125,7 @@ Bt.Parser = (function($, _)
             {
                 results.push(
                 {
-                    page: page_link,
+                    torrent: page_link,
                     download: download_links
                 })
             }
@@ -136,7 +134,7 @@ Bt.Parser = (function($, _)
         if(callback)
             callback.call(undefined, results)
 
-        return results
+        return results.length > 0 ? results : false
     }
 
     function setHtml(html)
