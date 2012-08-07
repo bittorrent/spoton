@@ -101,7 +101,7 @@ Bt.Parser = (function($, _)
         return regex.test(text)
     }
 
-    function getResults(html, query, max)
+    function getResults(html, query, callback, max)
     {
         max = max || 10
         var tables = $(html).find('table')
@@ -148,10 +148,11 @@ Bt.Parser = (function($, _)
             }
         })
 
+        if(callback)
+            callback.call(undefined, results)
+
         return results
     }
-
-    my.getResults = getResults
 
     my.setHtml = function(html)
     {
@@ -168,7 +169,7 @@ Bt.Parser = (function($, _)
         return my.search
     }
 
-    my.doSearch = function(search, query)
+    my.doSearch = function(search, query, callback)
     {
         search = search || my.search
 
@@ -183,7 +184,7 @@ Bt.Parser = (function($, _)
             _.extend(query_param, search.hidden_els),
             function(data)
             {
-                getResults(data, query)
+                getResults(data, query, callback)
             },
             'html'
         )

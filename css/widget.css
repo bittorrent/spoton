@@ -1,8 +1,8 @@
 /*Default Wrapper Display */
-.add-site {display:none}
-.download-url {display:none}
-.settings_torrents {display:none}
-.null_sites {display:none}
+.hidden{
+  display: none
+}
+
 /*  Global Styles */
 html {
   -moz-box-shadow: inset 0 0 2px 2px #e9e9e9;
@@ -110,7 +110,7 @@ div.button:active {
   outline:0px;
   color:#666;
 }
-.torrent_wrapper {width:430px}
+#main_content {width:430px}
 .search_tools {
   position:relative;
   height:32px;

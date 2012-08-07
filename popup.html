@@ -12,7 +12,7 @@
   </head>
   <body>
       <!-- Add Search Site Dialog -->
-      <div class="add-site">
+      <div id="add-site" class="hidden">
         <div class="dialog_header">Search Site Discovered!</div>
         <div class="form">
           <div><input class="site_link" type="text" placeholder="Enter site URL"/></div>
@@ -24,7 +24,7 @@
       </div>
       
       <!-- Add Torrent URL Dialog -->
-      <div class="download-url">
+      <div id="download-url"class="hidden">
         <div class="dialog_header">Download from URL</div>
         <div class="form">
           <div><input class="torrent_url" type="text" placeholder="Enter torrent URL" /></div>
@@ -36,8 +36,8 @@
         </div>
       </div>      
       
-      <!-- Add Torrent URL Dialog --> 
-      <div class="torrent_wrapper">
+      <!-- Content --> 
+      <div id="main-content">
         <div class="gadget_tabs">
           <div class="search_settings" title="Edit Control Settings"><img src="img/icon_settings.png" style="height:16px;width:16px;border:none"/></div>
           <div class="tab_left tab_selected">
@@ -64,7 +64,7 @@
             </div>
           </div>
           <div class="magnet-list_wrapper">
-            <div class="null_sites">Add Site to Search</div>
+            <div class="null_sites hidden">Add Site to Search</div>
         
              <div class="magnet-site_container clearbits">
               <div class="null_search">No Torrents Matching Search</div>
