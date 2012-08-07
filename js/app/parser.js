@@ -69,21 +69,6 @@ Bt.Parser = (function($, _)
         return magnet_links
     }
 
-    function getUrl(url)
-    {
-        var response
-
-        $.get(url, function(data)
-        {
-            response = data
-        }, 'html')
-
-        if(response === undefined || response.indexOf('<html') < 0)
-            return false
-        
-        my.setHtml(response)
-    }
-
     var regexes = {
         magnet: /^magnet:?/i,
         torrent: /.torrent$/i,
@@ -116,7 +101,7 @@ Bt.Parser = (function($, _)
             var row =  $(this)
 
             var download_links = {}
-            var text_links = []
+            var page_link = {}
 
             row.find('td a').each(function()
             {
@@ -125,7 +110,7 @@ Bt.Parser = (function($, _)
 
                 if(fuzzyMatch(anchor.text(), query))
                 {
-                    text_links.push({ text: anchor.text(), url: href })
+                    page_link = { text: anchor.text(), url: href }
                 }
 
                 $.each(regexes, function(key, val)
@@ -138,11 +123,11 @@ Bt.Parser = (function($, _)
                 })
             })
 
-            if(text_links.length)
+            if(!$.isEmptyObject(page_link))
             {
                 results.push(
                 {
-                    pages: text_links,
+                    page: page_link,
                     download: download_links
                 })
             }
@@ -154,7 +139,7 @@ Bt.Parser = (function($, _)
         return results
     }
 
-    my.setHtml = function(html)
+    function setHtml(html)
     {
         my.html = html
         my.el = $(html)
@@ -162,7 +147,7 @@ Bt.Parser = (function($, _)
 
     my.init = function(html)
     {
-        my.setHtml(html)
+        setHtml(html)
 
         my.search = getSearchUrl()
 

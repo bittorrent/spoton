@@ -1,5 +1,21 @@
 var storage = chrome.storage.local;
 
+Bt = Bt || {}
+
+Popup = new Backbone.View.extend(
+{
+    initialize: function()
+    {
+
+    }
+})
+
+Search = new Backbone.View.extend()
+
+Bt.Popup = new Popup({
+    el: $('body')
+})
+
 Array.prototype.contains = function(obj) {
     var i = this.length;
     while (i--) {

@@ -116,7 +116,7 @@ div.button:active {
   height:32px;
   margin:5px 0 0 0;
 }
-.search_container {
+#search_container {
   position:relative;
   margin:6px;
   border:1px solid #828282;
