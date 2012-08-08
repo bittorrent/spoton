@@ -19,7 +19,10 @@
     ],
     "permissions" : [
         "tabs",
-        "storage"
+        "storage",
+        "notifications",
+        "http://*/",
+        "https://*/"
     ],
     "manifest_version": 2
 }

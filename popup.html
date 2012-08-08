@@ -1,44 +1,48 @@
 <!doctype html>
 <html>
-  <head>
-    <title>SpotOn</title>
+    <head>
+        <title>SpotOn</title>
 
-    <link rel='stylesheet' href="css/widget.css" type="text/css">
-    <link rel="stylesheet" href="css/app.css" />
-    
-    <script src="js/lib/jquery.js"></script>
-    <script src="js/lib/handlebars.js"></script>
-    <script src="js/lib/underscore.js"></script>
-    <script src="js/lib/backbone.js"></script>
+        <link rel='stylesheet' href="css/widget.css" type="text/css">
+        <link rel="stylesheet" href="css/app.css" />
 
-    <script src="js/popup/popup.js"></script>
+        <script src="js/lib/jquery.js"></script>
+        <script src="js/lib/handlebars.js"></script>
+        <script src="js/lib/underscore.js"></script>
+        <script src="js/lib/backbone.js"></script>
 
-  </head>
-  <body>
-      <!-- Add Search Site Dialog -->
-      <div id="add-site" class="hidden">
-        <div class="dialog_header">Search Site Discovered!</div>
-        <div class="form">
-          <div><input class="site_link" type="text" placeholder="Enter site URL"/></div>
+        <script src="js/popup/popup.js"></script>
+
+    </head>
+    <body class="main">
+        <!-- Add Search Site Dialog -->
+        <div id="add-site" class="dialog">
+          <h3>Search discovered!</h3>
+          <form action="/">
+            <input type="hidden" name="site_url" id="site_url" />
+            <input type="hidden" name="site_format" id="site_format" />
+            <div class="row">
+                <input type="text" name="site_name" id="site_name" placeholder="Enter Site Name" />
+            </div>
+            <div class="row buttons">
+                <button>Cancel</button>
+                <button class="primary" type="submit">Add Search</button>
+            </div>
+          </form>
         </div>
-        <div class="button_bar">
-          <div class="button cancel">Cancel</div>
-          <div class="button primary button_url">Add Search Site</div>
+
+        <div id="add-torrent" class="dialog">
+            <h3>Add Torrent from URL</h3>
+            <form action="/">
+                <div class="row">
+                    <input type="text" name="torrent_url" id="torren_url" placeholder="Enter Torrent URL" />
+                </div>
+                <div class="row buttons">
+                    <button>Cancel</button>
+                    <button type="submit" class="primary">Add Torrent</button>
+                </div>
+            </form>
         </div>
-      </div>
-      
-      <!-- Add Torrent URL Dialog -->
-      <div id="download-url"class="hidden">
-        <div class="dialog_header">Download from URL</div>
-        <div class="form">
-          <div><input class="torrent_url" type="text" placeholder="Enter torrent URL" /></div>
-        </div>
-        <div class="button_bar">
-          <div class="button cancel">Cancel</div>
-          <div class="button primary button_add_url">Download</div>
-          <div class="cleardiv"></div>
-        </div>
-      </div>      
       
       <!-- Content --> 
       <div id="main-content">

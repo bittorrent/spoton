@@ -1,6 +1,6 @@
-var res = Bt.Parser.init(document.documentElement.innerHTML)
+var search = Bt.Parser.init(document.documentElement.innerHTML)
 
-if(res)
+if(search)
 {
-    chrome.extension.sendMessage(res)
+    chrome.extension.sendMessage(search)
 }

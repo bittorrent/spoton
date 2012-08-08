@@ -2,7 +2,11 @@ var storage = chrome.storage.local;
 
 window.Bt = window.Bt || {}
 
-Popup = new Backbone.View.extend(
+chrome.extension.onMessage.addListener(function(message, sender) {
+    console.warn(arguments)
+});
+
+Popup = Backbone.View.extend(
 {
     initialize: function()
     {
@@ -10,7 +14,13 @@ Popup = new Backbone.View.extend(
     }
 })
 
-Search = new Backbone.View.extend()
+Search = Backbone.View.extend(
+{
+    initialize: function()
+    {
+
+    }
+})
 
 Bt.Popup = new Popup({
     el: $('body')
