@@ -2,19 +2,24 @@ var storage = chrome.storage.local;
 
 window.Bt = window.Bt || {}
 
-Popup = new Backbone.View.extend(
-{
-    initialize: function()
-    {
+chrome.extension.onRequest.addListener(function(links) {
+    var res = Bt.Parser.init(document.documentElement.innerHTML)
+    console.info(res)
+});
 
-    }
-})
+// Popup = new Backbone.View.extend(
+// {
+//     initialize: function()
+//     {
 
-Search = new Backbone.View.extend()
+//     }
+// })
 
-Bt.Popup = new Popup({
-    el: $('body')
-})
+// Search = new Backbone.View.extend()
+
+// Bt.Popup = new Popup({
+//     el: $('body')
+// })
 
 Array.prototype.contains = function(obj) {
     var i = this.length;
