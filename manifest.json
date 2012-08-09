@@ -17,6 +17,7 @@
                 "lib/js/lib/jquery.js",
                 "lib/js/lib/underscore.js",
                 "lib/js/app/parser.js",
+                "js/app/messaging.js",
                 "js/content/content.js"
             ],
             "run_at": "document_end"
