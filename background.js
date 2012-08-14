@@ -41,7 +41,7 @@ function checkForValidUrl(tabId, changeInfo, tab) {
                 return
                 }
         }
-    query =  $('.search_box').val      //isSearchEngine(tab.url);
+    query =  $('.search_box').val();      //isSearchEngine(tab.url);
     if (query=='meaty mcmeat'){
       if ((objs) && (objs.torSite) && (objs.torSite.contains('http://www.clearbits.net/'))){
         chrome.browserAction.setBadgeText({text : 'Get', tabId : tabId})
