@@ -4,7 +4,6 @@
     <title></title>
     <link rel='stylesheet' href="css/widget.css" type="text/css">
     <script src="lib/jquery.js"></script>
-    <script src="js/widget_ui.js"></script>
     <script src="js/boot.js"></script>
     <!-- JavaScript and HTML must be in separate files for security. -->
   </head>
@@ -45,7 +44,7 @@
           </div>
         </div>
         <div class="button_notify" title="Display Notifications"></div>
-        <div class="search_settings" title="Edit Control Settings"></div>
+        <div class="search_settings item_clear_db" title="Edit Control Settings"></div>
       </div>
     
       <div class="magnet-list_wrapper">
@@ -128,17 +127,23 @@
       <div class="torrent_wrapper">
         <div class="gadget_tabs">
           
-          <div class="tab_left tab_selected">
+          <div class="tab_left tab_selected" title="Display Downloading Torrents">
             <div class="gadget_title">Downloading</div>
-            <div class="arrow tab_arrow"></div>
-            <div class="tab_dropdown">
+            <div class="item_url" title="Download torrent from URL" style="position:absolute;top:6px;right:5px;"><img src="img/icon_add_site.png" style="height:16px;width:16px;border:none" /></div>
+            <!--<div class="arrow tab_arrow"></div>-->
+            <!--<div class="tab_dropdown">
               <div class="tab_nib">
                 <div class="arrow nib_arrow"></div>
               </div>
               <div class="dropdown_item item_file" title="Add File"><img src="img/icon_add_file.png" style="height:14px;width:12px;border:none;margin:0 4px 0 2px;position:relative;top:-2px;" align="middle" /><span>Create torrent from file(s)</span></div>
               <div class="dropdown_item item_url" title="Add URL"><img src="img/icon_add_site.png" style="height:16px;width:16px;border:none;margin-right:3px;position:relative;top:-2px;" align="middle" /><span>Download file from URL</span></div>
               <div class="dropdown_item item_clear_db">Reset Demo</div>
-            </div>
+            </div>-->
+          </div>
+          <div class="tab_right" title="Display Completed Downloads">
+            <div class="gadget_title">Completed</div>
+            <div class="icon_folder" title="Open Downloads Folder"><img src="img/icon_folder.png" style="height:16px;width:18px;border:none"/></div>
+            
           </div>
         </div>
         

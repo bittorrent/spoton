@@ -159,6 +159,10 @@ input.search_box {
 .search_icon:hover {
   cursor:pointer;
 }
+.icon_folder {
+  position:absolute;
+  top:5px;right:6px;
+}
 .search_circle {
   height:7px;
   width:7px;
@@ -331,7 +335,7 @@ input.search_box {
   background:#555;
   padding:0;
   border:1px solid #828282;
-  border-radius:0 5px 5px 5px;
+  border-radius:0 0 5px 5px;
   position:relative;
 }
 .torrent-list_header {

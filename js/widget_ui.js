@@ -87,14 +87,24 @@ $('.magnet_add-site').click(function(){
    showAddSite();
 });
 
+// Display Completed Downloads
+$('.tab_right').click(function(){
+  $('.tab_left').removeClass('tab_selected');
+  $('.tab_right').addClass('tab_selected');
+});
+//Display Downloading Torrents 
+$('.tab_left').click(function(){
+  $('.tab_right').removeClass('tab_selected');
+  $('.tab_left').addClass('tab_selected');
+});
 // show/hide torrent options
-$('.tab_arrow').hover(
-  function() {
-    $('.tab_dropdown').show()
-  },function() {
-    $('.tab_dropdown').hide()
-  }
-);
+//$('.tab_arrow').hover(
+//  function() {
+//    $('.tab_dropdown').show()
+//  },function() {
+//    $('.tab_dropdown').hide()
+//  }
+//);
 $('.tab_dropdown').hover(
   function() {
     $('.tab_dropdown').show()
@@ -134,9 +144,11 @@ $('.add-site .button_url').click(function(){
       });
    	  if ($(".site_link").val() == tabs[0].url){
    	    //console.log('there')
-   	    chrome.browserAction.setBadgeText({text : '', tabId : tabs[0].id});
+   	    chrome.browserAction.setIcon({path : 'bt_icon.png'})
+   	    //chrome.browserAction.setBadgeText({text : '', tabId : tabs[0].id});
  	    }
  	  });
+ 	  
 });
 	
 chrome.tabs.query({active: true, currentWindow: true}, function(tabs){

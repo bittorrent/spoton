@@ -37,7 +37,8 @@ function checkForValidUrl(tabId, changeInfo, tab) {
     storage.get('torSite', function(objs){
     if (isTorSite(tab.url)){
             if ((!objs) || (!objs.torSite) || (!objs.torSite.contains(tab.url))){
-                chrome.browserAction.setBadgeText({text : 'Add', tabId : tabId})
+                //chrome.browserAction.setBadgeText({text : 'Add', tabId : tabId})
+                chrome.browserAction.setIcon({path : 'bt_icon_add.png', tabId : tabId})
                 return
                 }
         }
